@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Card(props) {
   let { resdetail} = props;
-  const { name, locality, avgRating, cloudinaryImageId, cuisines} = resdetail;
+  const { name, locality, avgRating, cloudinaryImageId, cuisines,sla} = resdetail;
   
    const renderStars = (rating) => {
     const stars = [];
@@ -30,6 +30,7 @@ export default function Card(props) {
           {/* <li className="list-group-item">Delivery Time: {}</li> */}
           <li className="list-group-item">Rating: {avgRating} {renderStars(avgRating)} </li>
           <li className="list-group-item">Locality: {locality}</li>
+          <li className="list-group-item">Delivery Time: {sla.deliveryTime} mins</li>
         </ul>
       </div>
     </div>
