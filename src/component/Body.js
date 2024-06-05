@@ -4,6 +4,9 @@ import Shimmer from "./Shimmer";
 
 export default function Body() {
   const [reslist, setreslist] = useState([]);
+  const [searchbox, setsearchbox] = useState("");
+  const [filteredRestaurant, setfilterRestaurant] = useState([]);
+
   useEffect(() => {
     apicall();
   }, []);
@@ -16,22 +19,45 @@ export default function Body() {
     setreslist(
       ans?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setfilterRestaurant(
+      ans?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   const handlefilter = () => {
     const filteredList = reslist.filter((e) => e.info.avgRating > 4.5);
-    setreslist(filteredList);
+    setfilterRestaurant(filteredList);
   };
 
   return reslist.length === 0 ? (
     <Shimmer />
   ) : (
     <div>
+      <input
+        className="mx-3"
+        type="text"
+        value={searchbox}
+        onChange={(e) => {
+          setsearchbox(e.target.value);
+        }}
+      ></input>
+      <button
+        onClick={() => {
+          var filtersearch = reslist.filter((item) => {
+            return item.info.name
+              .toLowerCase()
+              .includes(searchbox.toLowerCase());
+          });
+          setfilterRestaurant(filtersearch);
+        }}
+      >
+        Search
+      </button>
       <button className="m-4 btn btn-info" onClick={handlefilter}>
-        Best Rating
+        Top Rated
       </button>
       <div className="d-flex flex-wrap">
-        {reslist.map((e) => {
+        {filteredRestaurant.map((e) => {
           return <Card key={e.info.id} resdetail={e.info} />;
         })}
       </div>
