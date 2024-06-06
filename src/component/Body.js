@@ -9,7 +9,7 @@ export default function Body() {
 
   useEffect(() => {
     apicall();
-  }, []);
+  });
 
   let apicall = async () => {
     let data = await fetch(
@@ -58,7 +58,9 @@ export default function Body() {
       </button>
       <div className="d-flex flex-wrap">
         {filteredRestaurant.map((e) => {
-          return <Card key={e.info.id} resdetail={e.info} />;
+          return (
+            <Card key={e.info.id} resdetail={e.info} orderlink={e.cta.link} />
+          );
         })}
       </div>
     </div>

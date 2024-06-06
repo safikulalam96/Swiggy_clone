@@ -1,7 +1,7 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 
 export default function Head() {
-  const [btnName , setbtnName] = useState("Login")
+  const [btnName, setbtnName] = useState("Login");
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark ">
@@ -9,7 +9,7 @@ export default function Head() {
           <a className="navbar-brand" href="/">
             Swiggy(makaut)
           </a>
-         
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -25,14 +25,16 @@ export default function Head() {
             </ul>
           </div>
           <div>
-            <button onClick={()=>{
-              btnName==="Login"?setbtnName("Logout"):setbtnName("Login")
-              
-            }}>
+            <button
+              onClick={() => {
+                btnName === "Login"
+                  ? setbtnName("Logout")
+                  : setbtnName("Login");
+              }}
+            >
               {btnName}
             </button>
           </div>
-          
         </div>
       </nav>
     </div>
