@@ -34,12 +34,6 @@ export default function Card(props) {
           <li className="list-group-item">
             Delivery Time: {sla.deliveryTime} mins
           </li>
-          <li className="list-group-item">
-            <a href={props.orderlink}>
-              {" "}
-              <button>Order Now</button>
-            </a>
-          </li>
         </ul>
       </div>
     </div>

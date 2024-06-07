@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 export default function Body() {
   const [reslist, setreslist] = useState([]);
@@ -9,7 +10,7 @@ export default function Body() {
 
   useEffect(() => {
     apicall();
-  });
+  }, []);
 
   let apicall = async () => {
     let data = await fetch(
@@ -28,10 +29,11 @@ export default function Body() {
     const filteredList = reslist.filter((e) => e.info.avgRating > 4.5);
     setfilterRestaurant(filteredList);
   };
+  if (reslist.length === 0) {
+    return <Shimmer />;
+  }
 
-  return reslist.length === 0 ? (
-    <Shimmer />
-  ) : (
+  return (
     <div>
       <input
         className="mx-3"
@@ -59,7 +61,9 @@ export default function Body() {
       <div className="d-flex flex-wrap">
         {filteredRestaurant.map((e) => {
           return (
-            <Card key={e.info.id} resdetail={e.info} orderlink={e.cta.link} />
+            <Link key={e.info.id} to={"/restaurant/" + e.info.id}>
+              <Card resdetail={e.info} orderlink={e.cta.link} />
+            </Link>
           );
         })}
       </div>
