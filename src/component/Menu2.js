@@ -3,14 +3,12 @@ import { useParams } from "react-router-dom";
 
 const Menu = () => {
   const [menu, setmenu] = useState(null);
-  // const {name,cuisines,costForTwoMessage}=menu?.data.cards[2]?.card?.card?.info;
-  //   const {itemlist}=menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
   const { resId } = useParams();
 
   useEffect(() => {
     fetchingMenu();
-    // eslint-disable-next-line
+    // eslint-disable-next-line 
   }, []);
 
   const fetchingMenu = async () => {
@@ -20,13 +18,8 @@ const Menu = () => {
     );
     const ans = await data.json();
     setmenu(ans);
-    console.log(ans);
-    console.log(menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.item?.card?.card?.itemCards)
+    console.log(ans)
   };
-  // const itemCards =
-  // resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-  //   ?.itemCards || [];
-
   
 
   
@@ -36,7 +29,7 @@ const Menu = () => {
         <h2>{menu?.data.cards[2]?.card?.card?.info.name}</h2>
         <h2>{menu?.data.cards[2]?.card?.card?.info.cuisines.join(" ")}</h2>
         <h2>{menu?.data.cards[2]?.card?.card?.info.costForTwoMessage}</h2>
-        {console.log(menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.item?.card?.card?.itemCards)}
+        {/* {console.log(menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.item?.card?.card?.itemCards)} */}
 
         {menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map(
         (item) => {

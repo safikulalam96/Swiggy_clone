@@ -1,4 +1,5 @@
 import React from "react";
+import Aboutclasschild from "./Aboutclasschild";
 
 class AboutClass extends React.Component {
   constructor(props) {
@@ -6,9 +7,14 @@ class AboutClass extends React.Component {
     this.state = {
       count: 0,
     };
+    console.log("parent Constructor")
+  }
+  componentDidMount(){
+    console.log('parent DidMount')
   }
 
   render() {
+    console.log('parent render')
     return (
       <div>
         <hr />
@@ -19,7 +25,8 @@ class AboutClass extends React.Component {
             })
         }}>Count</button>
         <h3>{this.props.name}</h3>
-        <h2>This is About page from Class based Component</h2>
+        <h2>Parent</h2>
+        <Aboutclasschild/>
       </div>
     );
   }
