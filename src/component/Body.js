@@ -29,7 +29,7 @@ export default function Body() {
     const filteredList = reslist.filter((e) => e.info.avgRating > 4.5);
     setfilterRestaurant(filteredList);
   };
-  if (reslist.length === 0) {
+  if (reslist?.length === 0) {
     return <Shimmer />;
   }
 
