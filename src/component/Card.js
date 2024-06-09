@@ -1,9 +1,11 @@
 import React from "react";
+import { imageLink } from "../utils/constrain";
 
 export default function Card(props) {
   let { resdetail } = props;
   const { name, locality, avgRating, cloudinaryImageId, cuisines, sla } =
     resdetail;
+
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 0; i < Math.floor(rating); i++) {
@@ -16,7 +18,7 @@ export default function Card(props) {
     <div>
       <div className="card m-3" style={{ width: "20.6rem", cursor: "pointer" }}>
         <img
-          src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
+          src={`${imageLink+cloudinaryImageId}`}
           className="card-img-top"
           alt=""
           style={{ height: "13rem" }}

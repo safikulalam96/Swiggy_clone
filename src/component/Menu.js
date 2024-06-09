@@ -1,28 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import useApicall from "../utils/useApicall";
+import { imageLink } from "../utils/constrain";
 
 const Menu = () => {
   const { resId } = useParams();
-  const [resMenu, setResMenu] = useState(null);
-
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const menuData = await fetch(
-        "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.51800&lng=88.38320&restaurantId=" +
-          resId
-      );
-      const json = await menuData.json();
-      setResMenu(json.data);
-    } catch (error) {
-      console.error("Failed to fetch menu data:", error);
-    }
-  };
+  const resMenu = useApicall(resId);
 
   const { name, cuisines, costForTwoMessage, cloudinaryImageId, avgRating } =
     resMenu?.cards[2]?.card?.card?.info || {};
@@ -36,34 +19,34 @@ const Menu = () => {
   }
   return (
     <>
-      <div className="resmenu min-h-full p-4">
-        <div className="container text-center">
-          <img
-            src={
-              "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-              cloudinaryImageId
-            }
-            alt="Restaurant"
-            style={{ height: "13rem" }}
-          />
-          <h1 className="">{name}</h1>
-          <h3 className="">{cuisines?.join(", ")}</h3>
-          <h3 className="">{costForTwoMessage}</h3>
-          <h4 className="">Rating: {avgRating} &#9733;</h4>
+      <div className="resmenu p-3">
+        <div className="container  ">
+          <span className="d-flex mx-4 ">
+            <img
+              src={imageLink + cloudinaryImageId}
+              alt="Restaurant"
+              style={{ height: "15rem", width: "15rem" }}
+            />
+            <div className="main-details mx-5 my-3">
+              <h1 className="">{name}</h1>
+              <h3 className="">{cuisines?.join(", ")}</h3>
+              <h3 className="">{costForTwoMessage}</h3>
+              <h4 className="">Rating: {avgRating} &#9733;</h4>
+            </div>
+          </span>
         </div>
-        <div className="container ">
+        <div className="container">
+          <h2 className="mx-4 my-5">Menu List</h2>
           {itemCards.map((item) => {
-            const { id, name, description, price } = item.card.info;
+            const { id, name, description, price, defaultPrice } =
+              item.card.info;
             return (
-              <div
-                key={id}
-                className="menu-card p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-              >
-                <h2 className="text-xl font-semibold mb-2">{name}</h2>
-                <p className="text-gray-600">{description}</p>
-                <p className="text-gray-800 font-bold mt-2">
-                  Price: ₹{price ? price / 100 : "N/A"}
-                </p>
+              <div key={id} className="p-4 ">
+                <h2 className="text-primary">{name.replace("+", " ")}</h2>
+                <h6 className="text-primary-emphasis">{description}</h6>
+                <h4 className="text-success">
+                  Price: ₹{price ? price / 100 : defaultPrice / 100}
+                </h4>
               </div>
             );
           })}

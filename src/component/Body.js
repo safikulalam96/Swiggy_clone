@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { MAINAPI } from "../utils/constrain";
+import useOnlinestatus from "../utils/useOnlinestatus";
 
 export default function Body() {
   const [reslist, setreslist] = useState([]);
   const [searchbox, setsearchbox] = useState("");
   const [filteredRestaurant, setfilterRestaurant] = useState([]);
+  const online=useOnlinestatus()
 
   useEffect(() => {
     apicall();
   }, []);
 
   let apicall = async () => {
-    let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    let data = await fetch(MAINAPI);
     let ans = await data.json();
     setreslist(
       ans?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -29,6 +30,9 @@ export default function Body() {
     const filteredList = reslist.filter((e) => e.info.avgRating > 4.5);
     setfilterRestaurant(filteredList);
   };
+  if(online===false){
+    return <h1>Oops looks like You are offline, connect to network and Try again</h1>
+  }
   if (reslist?.length === 0) {
     return <Shimmer />;
   }
