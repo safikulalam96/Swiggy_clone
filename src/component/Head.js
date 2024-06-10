@@ -2,45 +2,34 @@ import React, { useState } from "react";
 
 export default function Head() {
   const [btnName, setbtnName] = useState("Login");
-  return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark ">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            Swiggy(makaut)
-          </a>
 
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="/about"
-                >
-                  About
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/error">
-                  Error
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                btnName === "Login"
-                  ? setbtnName("Logout")
-                  : setbtnName("Login");
-              }}
-            >
-              {btnName}
-            </button>
-          </div>
+  return (
+    <nav className="p-10 bg-sky-200  font-bold sticky top-0 bg-opacity-75">
+      <div className="flex justify-between items-center">
+        <a href="/" className="text-xl">Home</a>
+        <div className="flex items-center space-x-6">
+          <ul className="flex space-x-6">
+            <li className="nav-item">
+              <a aria-current="page" href="/about" className="text-lg">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="/error" className="text-lg">
+                Error
+              </a>
+            </li>
+          </ul>
+          <button
+            className="text-lg"
+            onClick={() => {
+              setbtnName((prev) => (prev === "Login" ? "Logout" : "Login"));
+            }}
+          >
+            {btnName}
+          </button>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }

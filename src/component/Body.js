@@ -9,7 +9,7 @@ export default function Body() {
   const [reslist, setreslist] = useState([]);
   const [searchbox, setsearchbox] = useState("");
   const [filteredRestaurant, setfilterRestaurant] = useState([]);
-  const online=useOnlinestatus()
+  const online = useOnlinestatus();
 
   useEffect(() => {
     apicall();
@@ -30,39 +30,47 @@ export default function Body() {
     const filteredList = reslist.filter((e) => e.info.avgRating > 4.5);
     setfilterRestaurant(filteredList);
   };
-  if(online===false){
-    return <h1>Oops looks like You are offline, connect to network and Try again</h1>
+  if (online === false) {
+    return (
+      <h1>Oops looks like You are offline, connect to network and Try again</h1>
+    );
   }
   if (reslist?.length === 0) {
     return <Shimmer />;
   }
 
   return (
-    <div>
-      <input
-        className="mx-3"
-        type="text"
-        value={searchbox}
-        onChange={(e) => {
-          setsearchbox(e.target.value);
-        }}
-      ></input>
-      <button
-        onClick={() => {
-          var filtersearch = reslist.filter((item) => {
-            return item.info.name
-              .toLowerCase()
-              .includes(searchbox.toLowerCase());
-          });
-          setfilterRestaurant(filtersearch);
-        }}
-      >
-        Search
-      </button>
-      <button className="m-4 btn btn-info" onClick={handlefilter}>
-        Top Rated
-      </button>
-      <div className="d-flex flex-wrap">
+    <div className="bg-sky-100">
+      <div className="items-center justify-center flex">
+        <input
+          className="m-3 p-2 border-blue-500 border bg-[#CECEE7] font-bold rounded-xl ... hover:bg-white"
+          type="text"
+          value={searchbox}
+          onChange={(e) => {
+            setsearchbox(e.target.value);
+          }}
+        ></input>
+        <button
+          className="border p-2 rounded-xl ...  bg-[#CECEE7] hover:bg-white"
+          onClick={() => {
+            var filtersearch = reslist.filter((item) => {
+              return item.info.name
+                .toLowerCase()
+                .includes(searchbox.toLowerCase());
+            });
+            setfilterRestaurant(filtersearch);
+          }}
+        >
+          Search
+        </button>
+        <button
+          className="m-4 rounded-xl ... bg-[#CECEE7] p-2 hover:bg-white"
+          onClick={handlefilter}
+        >
+          Top Rated
+        </button>
+      </div>
+      <div className="flex flex-wrap justify-center">
         {filteredRestaurant.map((e) => {
           return (
             <Link key={e.info.id} to={"/restaurant/" + e.info.id}>

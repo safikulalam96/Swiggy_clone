@@ -16,24 +16,24 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card m-3" style={{ width: "20.6rem", cursor: "pointer" }}>
+      <div className="card m-3 p-2 border-zinc-150 border hover:scale-95 w-80" >
         <img
           src={`${imageLink+cloudinaryImageId}`}
-          className="card-img-top"
+          className="w-full"
           alt=""
           style={{ height: "13rem" }}
         />
-        <div className="card-body" style={{ height: "8rem" }}>
-          <h5 className="card-title">{name}</h5>
-          <p className="card-text">{cuisines.join(" ")}</p>
+        <div className="mt-5 text-lg ">
+          <h5 className="font-bold">{name}</h5>
+          <p className="italic">{cuisines.join(" ")}</p>
         </div>
 
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
+        <ul className="">
+          <li className="">
             Rating: {avgRating} {renderStars(avgRating)}
           </li>
-          <li className="list-group-item">Locality: {locality}</li>
-          <li className="list-group-item">
+          <li className="">Locality: {locality}</li>
+          <li className="">
             Delivery Time: {sla.deliveryTime} mins
           </li>
         </ul>
