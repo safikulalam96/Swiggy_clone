@@ -43,7 +43,7 @@ export default function Body() {
     <div className="bg-sky-100">
       <div className="items-center justify-center flex">
         <input
-          className="m-3 p-2 border-blue-500 border bg-[#CECEE7] font-bold rounded-xl ... hover:bg-white"
+          className="m-3 p-2 border-green-500 border bg-sky-100 font-bold rounded-xl ... hover:bg-white"
           type="text"
           value={searchbox}
           onChange={(e) => {
@@ -51,7 +51,7 @@ export default function Body() {
           }}
         ></input>
         <button
-          className="border p-2 rounded-xl ...  bg-[#CECEE7] hover:bg-white"
+          className="border p-2 rounded-xl ...  bg-sky-100 hover:bg-white  border-green-500"
           onClick={() => {
             var filtersearch = reslist.filter((item) => {
               return item.info.name
@@ -64,10 +64,10 @@ export default function Body() {
           Search
         </button>
         <button
-          className="m-4 rounded-xl ... bg-[#CECEE7] p-2 hover:bg-white"
+          className="m-4 rounded-xl ...bg-sky-100 p-2 hover:bg-white border-green-500 border"
           onClick={handlefilter}
         >
-          Top Rated
+          Top Rated Restaurant
         </button>
       </div>
       <div className="flex flex-wrap justify-center">
