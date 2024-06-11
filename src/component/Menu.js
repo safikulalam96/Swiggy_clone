@@ -18,7 +18,7 @@ const Menu = () => {
   }
   return (
     <>
-      <div className="p-3 bg-sky-100">
+      <div className="p-3 bg-sky-100 font-comic">
           <div className="flex">
             <span className="flex mx-4 ">
               <img

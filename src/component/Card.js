@@ -16,16 +16,16 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card m-3 p-2 border-zinc-150 border hover:scale-95 w-80" >
+      <div className="card m-3 p-2 border-green-500 border hover:scale-95 w-80 rounded-lg font-comic" >
         <img
           src={`${imageLink+cloudinaryImageId}`}
-          className="w-full"
+          className="w-full rounded-lg"
           alt=""
           style={{ height: "13rem" }}
         />
-        <div className="mt-5 text-lg ">
+        <div className="mt-5 text-xl ">
           <h5 className="font-bold">{name}</h5>
-          <p className="italic">{cuisines.join(" ")}</p>
+          <p className="">{cuisines.join(" ")}</p>
         </div>
 
         <ul className="">
