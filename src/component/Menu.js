@@ -25,13 +25,13 @@ const Menu = () => {
     <>
       <div className="p-3 bg-sky-100 font-comic  justify-center">
         <div className="flex items-center justify-center">
-          <div className="flex mx-4 p-5">
+          <div className="flex mx-4 p-10">
             <img
-              className="rounded-xl h-52 w-4/12"
+              className="rounded-xl h-52 w-6/12"
               src={imageLink + cloudinaryImageId}
               alt="Restaurant"
             />
-            <div className="main-details mx-5 text-4xl">
+            <div className="main-details mx-5 text-3xl">
               <h1 className="">{name}</h1>
               <h3 className="">{cuisines?.join(", ")}</h3>
               <h3 className="">{costForTwoMessage}</h3>
@@ -41,7 +41,7 @@ const Menu = () => {
         </div>
         <div className="text-center">
           {category.map((e) => {
-            return <RestaurantCategory data={e.card.card} />;
+            return <RestaurantCategory key={e.card.card.title} data={e.card.card} />;
           })}
         </div>
       </div>
