@@ -11,9 +11,12 @@ const Menu = () => {
     resMenu?.cards[2]?.card?.card?.info || {};
 
   const category =
-    resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((e)=>{
-      return e.card?.['card']?.['@type']==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-    })
+    resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((e) => {
+      return (
+        e.card?.["card"]?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
+    });
 
   if (!resMenu) {
     return <Shimmer />;
@@ -21,14 +24,14 @@ const Menu = () => {
   return (
     <>
       <div className="p-3 bg-sky-100 font-comic  justify-center">
-        <div className="flex">
-          <div className="flex mx-4 ">
+        <div className="flex items-center justify-center">
+          <div className="flex mx-4 p-5">
             <img
+              className="rounded-xl h-52 w-4/12"
               src={imageLink + cloudinaryImageId}
               alt="Restaurant"
-              style={{ height: "15rem", width: "15rem" }}
             />
-            <div className="main-details mx-5 mt-9 text-4xl">
+            <div className="main-details mx-5 text-4xl">
               <h1 className="">{name}</h1>
               <h3 className="">{cuisines?.join(", ")}</h3>
               <h3 className="">{costForTwoMessage}</h3>
@@ -37,11 +40,9 @@ const Menu = () => {
           </div>
         </div>
         <div className="text-center">
-          {category.map(
-            (e) => {
-              return <RestaurantCategory data={e.card.card} />;
-            }
-          )}
+          {category.map((e) => {
+            return <RestaurantCategory data={e.card.card} />;
+          })}
         </div>
       </div>
     </>
