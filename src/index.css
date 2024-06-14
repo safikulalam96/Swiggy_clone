@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure the body and html cover the entire viewport */
 body, html {
     margin: 0;
     height: 100%;
-    background-color: #E0F2FE; /* Your desired background color */
+    background-color: #E0F2FE; 
   }
   
-  /* Ensure the root div (or any wrapping container) covers the entire viewport */
   #root, .full-height-container {
     min-height: 100%;
     display: flex;
