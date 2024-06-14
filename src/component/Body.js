@@ -14,7 +14,7 @@ export default function Body() {
   useEffect(() => {
     apicall();
   }, []);
-
+  
   let apicall = async () => {
     let data = await fetch(MAINAPI);
     let ans = await data.json();
@@ -43,7 +43,7 @@ export default function Body() {
     <div className="bg-sky-100">
       <div className="items-center justify-center flex">
         <input
-          className="m-3 p-2 border-green-500 border bg-sky-100 font-bold rounded-xl ... hover:bg-white"
+          className="p-2 border-green-500 border bg-sky-100 font-bold rounded-xl ... hover:bg-white"
           type="text"
           value={searchbox}
           onChange={(e) => {

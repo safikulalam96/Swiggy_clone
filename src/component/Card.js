@@ -16,7 +16,7 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card m-3 p-2 border-green-500 border hover:scale-95 w-80 rounded-lg font-comic" >
+      <div className="card m-3 p-2 hover:scale-95 w-80 rounded-lg font-comic" >
         <img
           src={`${imageLink+cloudinaryImageId}`}
           className="w-full rounded-lg"
